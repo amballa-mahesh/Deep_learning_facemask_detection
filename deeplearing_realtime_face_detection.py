@@ -41,7 +41,7 @@ while cap.isOpened():
         image_treated = image_treat(frames)
         pred = best_model.predict(image_treated).round()
         predict_result = ''
-        if pred[0] == 0:
+        if pred[0] == 1:
             predict_result = 'Mask Identified'
             cv2.rectangle(frames,(x,y),(x+w,y+h),(0,255,0),2)
             cv2.putText(frames, 'Thanks for wearing!', (x + 12, y-10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 1, cv2.LINE_AA)
@@ -52,7 +52,7 @@ while cap.isOpened():
         print(predict_result)
         cv2.imshow('image',frames)
         print(frames.shape)
-        print(image_resize.shape)
+        # print(image_resize.shape)
         
     if cv2.waitKey(3)& 0xff == 27:
             break
